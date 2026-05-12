@@ -33,7 +33,7 @@ app = FastAPI(
 app.add_middleware(
     CORSMiddleware,
 
-    allow_origin_regex=r"https://.*\.vercel\.app",
+    allow_origin_regex= r" https://.*\.vercel\.app ",
 
     allow_credentials=True,
 
@@ -69,25 +69,25 @@ app.mount(
 
 app.include_router(
     auth.router,
-    prefix="/router/auth",
+    prefix="/api/auth",
     tags=["auth"]
 )
 
 app.include_router(
     books.router,
-    prefix="/router/books",
+    prefix="/api/books",
     tags=["books"]
 )
 
 app.include_router(
     content.router,
-    prefix="/router/content",
+    prefix="/api/content",
     tags=["content"]
 )
 
 app.include_router(
     generate.router,
-    prefix="/router/generate",
+    prefix="/api/generate",
     tags=["generate"]
 )
 
