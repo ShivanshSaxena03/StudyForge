@@ -4,7 +4,9 @@ from fastapi.middleware.cors import CORSMiddleware
 from routers import auth, books, content, generate
 
 app = FastAPI()
-
+ # "https://study-forge-phi.vercel.app",
+        # "http://localhost:3000",
+        # "http://localhost:5173"
 # CORS
 app.add_middleware(
     CORSMiddleware,
@@ -17,6 +19,16 @@ app.add_middleware(
 app.include_router(
     auth.router,
     prefix="/api/auth",
+    tags=["auth"]
+)
+app.include_router(
+    auth.router,
+    prefix="/api/auth/signup",
+    tags=["auth"]
+)
+app.include_router(
+    auth.router,
+    prefix="/api/auth/login",
     tags=["auth"]
 )
 
