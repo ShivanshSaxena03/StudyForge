@@ -69,25 +69,25 @@ app.mount(
 
 app.include_router(
     auth.router,
-    prefix="/api/auth",
+    prefix="/router/auth",
     tags=["auth"]
 )
 
 app.include_router(
     books.router,
-    prefix="/api/books",
+    prefix="/router/books",
     tags=["books"]
 )
 
 app.include_router(
     content.router,
-    prefix="/api/content",
+    prefix="/router/content",
     tags=["content"]
 )
 
 app.include_router(
     generate.router,
-    prefix="/api/generate",
+    prefix="/router/generate",
     tags=["generate"]
 )
 
