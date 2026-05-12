@@ -1,39 +1,19 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.staticfiles import StaticFiles
-
-import os
-
-from database import engine, Base
 
 from routers import auth, books, content, generate
 
+app = FastAPI()
 
-# =========================================
-# Create Tables
-# =========================================
-
-Base.metadata.create_all(bind=engine)
-
-
-# =========================================
-# FastAPI App
-# =========================================
-
-app = FastAPI(
-    title="StudyForge API",
-    version="1.0.0"
-)
-
-
-# =========================================
 # CORS
-# =========================================
-
 app.add_middleware(
     CORSMiddleware,
 
-    allow_origin_regex= r" https://.*\.vercel\.app ",
+    allow_origins=[
+        "http://localhost:5173",
+        "https://study-forge-phi.vercel.app",
+        "https://study-forge-git-main-saxena03.vercel.app",
+    ],
 
     allow_credentials=True,
 
@@ -42,31 +22,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-
-# =========================================
-# Static Folders
-# =========================================
-
-os.makedirs("uploads", exist_ok=True)
-os.makedirs("generated", exist_ok=True)
-
-app.mount(
-    "/uploads",
-    StaticFiles(directory="uploads"),
-    name="uploads"
-)
-
-app.mount(
-    "/generated",
-    StaticFiles(directory="generated"),
-    name="generated"
-)
-
-
-# =========================================
 # Routers
-# =========================================
-
 app.include_router(
     auth.router,
     prefix="/api/auth",
@@ -92,13 +48,6 @@ app.include_router(
 )
 
 
-# =========================================
-# Root Route
-# =========================================
-
 @app.get("/")
 async def root():
-
-    return {
-        "message": "StudyForge API Running"
-    }
+    return {"message": "Backend running"}
