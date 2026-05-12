@@ -10,10 +10,9 @@ app.add_middleware(
     CORSMiddleware,
 
     allow_origins=[
-        "http://localhost:5173",
-        "https://study-forge-phi.vercel.app",
-        "https://study-forge-git-main-saxena03.vercel.app",
-        "https://vercel.com/saxena03/study-forge/8tGZx9kdZG2Z9x5yMw9ccfnTWEJY",
+        "http://localhost:5173",           # Local Vite dev server
+        "http://localhost:3000",            # Alternative local dev
+        "https://study-forge-phi.vercel.app",  # Deployed frontend
     ],
 
     allow_credentials=True,
