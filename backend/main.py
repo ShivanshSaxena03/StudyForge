@@ -25,25 +25,25 @@ app.add_middleware(
 # Routers
 app.include_router(
     auth.router,
-    prefix="/routers/auth",
+    prefix="/api/auth",
     tags=["auth"]
 )
 
 app.include_router(
     books.router,
-    prefix="/routers/books",
+    prefix="/api/books",
     tags=["books"]
 )
 
 app.include_router(
     content.router,
-    prefix="/routers/content",
+    prefix="/api/content",
     tags=["content"]
 )
 
 app.include_router(
     generate.router,
-    prefix="/routers/generate",
+    prefix="/api/generate",
     tags=["generate"]
 )
 
