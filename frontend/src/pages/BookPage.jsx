@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import api from '../utils/api'
 import toast from 'react-hot-toast'
+import MermaidChart from '../components/MermaidChart'
 
 const GENERATION_OPTIONS = [
   { id: 'summary', label: 'Summary', emoji: '📋', desc: 'Key takeaways & overview' },
@@ -706,10 +707,25 @@ export default function BookPage() {
             whiteSpace: 'pre-wrap',
           }}
         >
-          {String(content)
-            .replace(/\\n/g, '\n')
-            .replace(/\*\*/g, '')
-          }
+          {section === 'flowchart' ? (
+
+          <MermaidChart chart={content} />
+
+        ) : (
+
+          <div
+            style={{
+              whiteSpace: 'pre-wrap',
+              lineHeight: 1.9,
+            }}
+          >
+            {String(content)
+              .replace(/\\n/g, '\n')
+              .replace(/\*\*/g, '')
+            }
+          </div>
+
+)}
         </div>
 
       </div>

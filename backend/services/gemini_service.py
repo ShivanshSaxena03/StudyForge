@@ -65,35 +65,35 @@ Formatting:
 """,
 
     "flowchart": """
-Create ADVANCED PROCESS FLOWS and VISUAL EXPLANATIONS.
+You are a Mermaid.js diagram generator.
+
+STRICT RULES:
+- Return ONLY valid Mermaid.js code
+- DO NOT explain anything
+- DO NOT add markdown
+- DO NOT use ```mermaid
+- DO NOT add notes before or after
+- Output must start directly with:
+  flowchart TD
+
+Use ONLY this syntax style:
+
+flowchart TD
+    A[Start] --> B[Process]
+    B --> C{Decision}
+    C -->|Yes| D[Success]
+    C -->|No| E[Retry]
 
 Requirements:
-- Convert processes into step-by-step flows
-- Create logical chains of events
-- Explain cause-and-effect relationships
-- Use arrows and flow structures
-- Simplify complex systems visually
-- Include decision branches where relevant
-- Make the flow easy for revision and memorization
+- Create clean educational flowcharts
+- Keep node labels short
+- Avoid special characters
+- Use simple readable structure
+- Maximum 10-15 nodes
+- Ensure syntax is VALID Mermaid.js
 
-Formatting:
-Use clean flowchart style like:
-
-[Start]
-   ↓
-[Step 1]
-   ↓
-[Step 2]
-   ↓
-{Decision?}
- ↙       ↘
-Yes      No
- ↓        ↓
-[A]      [B]
-
-Create multiple flows if needed.
+Generate ONLY Mermaid code.
 """,
-
     "comparison": """
 Create PROFESSIONAL COMPARISON TABLES and DIFFERENCE ANALYSIS.
 
