@@ -8,20 +8,15 @@ app = FastAPI()
 # CORS
 app.add_middleware(
     CORSMiddleware,
-
     allow_origins=[
-        "http://localhost:5173",           # Local Vite dev server
-        "http://localhost:3000",            # Alternative local dev
-        "https://study-forge-phi.vercel.app",  # Deployed frontend
+        "https://study-forge-phi.vercel.app",
+        "http://localhost:3000",
+        "http://localhost:5173"
     ],
-
     allow_credentials=True,
-
     allow_methods=["*"],
-
     allow_headers=["*"],
 )
-
 # Routers
 app.include_router(
     auth.router,
