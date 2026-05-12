@@ -13,6 +13,7 @@ app.add_middleware(
         "http://localhost:5173",
         "https://study-forge-phi.vercel.app",
         "https://study-forge-git-main-saxena03.vercel.app",
+        "https://vercel.com/saxena03/study-forge/EzHkcffVu3X5HJfz8bmbV1jiZNnV",
     ],
 
     allow_credentials=True,
