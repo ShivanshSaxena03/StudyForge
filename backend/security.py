@@ -13,7 +13,7 @@ from fastapi.security import (
 from sqlalchemy.orm import Session
 
 from database import get_db
-from import models
+import models
 
 import os
 from dotenv import load_dotenv
