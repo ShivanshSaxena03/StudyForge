@@ -139,3 +139,28 @@ async def delete_book(
     db.delete(book)
     db.commit()
     return {"message": "Book deleted"}
+@router.delete("/{book_id}")
+async def delete_book(
+    book_id: int,
+    current_user: models.User = Depends(get_current_user),
+    db: Session = Depends(get_db)
+):
+
+    book = db.query(models.Book).filter(
+        models.Book.id == book_id,
+        models.Book.owner_id == current_user.id
+    ).first()
+
+    if not book:
+        raise HTTPException(
+            status_code=404,
+            detail="Book not found"
+        )
+
+    db.delete(book)
+    db.commit()
+
+    return {
+        "success": True,
+        "message": "Book deleted successfully"
+    }
