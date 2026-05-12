@@ -6,7 +6,12 @@ import os
 
 from database import engine, Base
 
-from routers import auth, books, content, generate
+from backend.routers import (
+    auth,
+    books,
+    content,
+    generate
+)
 
 
 # =========================================
