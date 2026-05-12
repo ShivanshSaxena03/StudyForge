@@ -239,7 +239,7 @@ export default function BookPage() {
   const [book, setBook] = useState(null)
   const [contents, setContents] = useState([])
   const [generatedContent, setGeneratedContent] = useState(null)
-
+  const [history, setHistory] = useState([])
   const [selectedOptions, setSelectedOptions] = useState([
     'summary',
     'key_concepts'
@@ -259,9 +259,13 @@ export default function BookPage() {
 
   const fileInputRef = useRef(null)
 
-  useEffect(() => {
-    load()
-  }, [bookId])
+ useEffect(() => {
+
+  load()
+
+  loadHistory()
+
+}, [bookId])
 
   const load = async () => {
 
@@ -285,7 +289,22 @@ export default function BookPage() {
 
     }
   }
+  const loadHistory = async () => {
 
+  try {
+
+    const { data } = await api.get(
+      `/generate/history/${bookId}`
+    )
+
+    setHistory(data)
+
+  } catch (err) {
+
+    console.error(err)
+
+  }
+}
   const toggleOption = (id) => {
 
     setSelectedOptions(prev =>
@@ -402,7 +421,7 @@ export default function BookPage() {
       )
 
       setGeneratedContent(data.generated_content)
-
+      loadHistory()
       toast.success('Generated successfully')
 
     } catch (err) {
@@ -741,7 +760,79 @@ export default function BookPage() {
         </main>
 
       </div>
+{history.length > 0 && (
 
+  <div style={{ marginTop: 50 }}>
+
+    <div
+      style={{
+        fontFamily: 'Syne, sans-serif',
+        fontSize: 28,
+        fontWeight: 800,
+        marginBottom: 22,
+        color: '#1A1A2E',
+      }}
+    >
+      🕘 Previous Generations
+    </div>
+
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: 16,
+      }}
+    >
+
+      {history.map(item => (
+
+        <div
+          key={item.id}
+          onClick={() =>
+            setGeneratedContent(item.output_data)
+          }
+          style={{
+            background: 'white',
+            borderRadius: 18,
+            padding: 22,
+            border: '1px solid #E5E7EB',
+            cursor: 'pointer',
+            boxShadow: '0 4px 16px rgba(0,0,0,0.04)',
+            transition: '0.2s',
+          }}
+        >
+
+          <div
+            style={{
+              fontWeight: 800,
+              fontSize: 18,
+              marginBottom: 8,
+              color: '#1A1A2E',
+            }}
+          >
+            {item.title}
+          </div>
+
+          <div
+            style={{
+              fontSize: 13,
+              color: '#9CA3AF',
+            }}
+          >
+            {new Date(
+              item.created_at
+            ).toLocaleString()}
+          </div>
+
+        </div>
+
+      ))}
+
+    </div>
+
+  </div>
+
+)}
       {showText && (
 
         <div

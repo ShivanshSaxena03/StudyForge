@@ -63,3 +63,24 @@ class GeneratedBooklet(Base):
     created_at = Column(DateTime(timezone=True), server_default=func.now())
 
     book = relationship("Book", back_populates="booklets")
+class GeneratedOutput(Base):
+    __tablename__ = "generated_outputs"
+
+    id = Column(Integer, primary_key=True, index=True)
+
+    book_id = Column(
+        Integer,
+        ForeignKey("books.id"),
+        nullable=False
+    )
+
+    title = Column(String, nullable=False)
+
+    output_data = Column(JSON)
+
+    created_at = Column(
+        DateTime(timezone=True),
+        server_default=func.now()
+    )
+
+    book = relationship("Book")

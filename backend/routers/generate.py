@@ -97,13 +97,24 @@ async def generate_booklet(
         book_title=book.title,
         subject=book.subject or ""
     )
+        saved_output = models.GeneratedOutput(
+            book_id=book.id,
+            title=req.title,
+            output_data=ai_content
+        )
 
+        db.add(saved_output)
+
+        db.commit()
+
+        db.refresh(saved_output)
         return {
-            "success": True,
-            "book_id": book.id,
-            "book_title": book.title,
-            "generated_content": ai_content
-        }
+        "success": True,
+        "output_id": saved_output.id,
+        "book_id": book.id,
+        "book_title": book.title,
+        "generated_content": ai_content
+    }
 
     except Exception as e:
 
@@ -113,3 +124,31 @@ async def generate_booklet(
             status_code=500,
             detail=f"Failed to generate study content: {str(e)}"
         )
+    
+@router.get("/history/{book_id}")
+async def get_generation_history(
+    book_id: int,
+    current_user: models.User = Depends(get_current_user),
+    db: Session = Depends(get_db)
+):
+
+    book = db.query(models.Book).filter(
+        models.Book.id == book_id,
+        models.Book.owner_id == current_user.id
+    ).first()
+
+    if not book:
+        raise HTTPException(
+            status_code=404,
+            detail="Book not found"
+        )
+
+    outputs = db.query(
+        models.GeneratedOutput
+    ).filter(
+        models.GeneratedOutput.book_id == book_id
+    ).order_by(
+        models.GeneratedOutput.created_at.desc()
+    ).all()
+
+    return outputs
