@@ -10,17 +10,15 @@ Base.metadata.create_all(bind=engine)
 
 app = FastAPI(title="StudyForge API", version="1.0.0")
 
+from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+
+app = FastAPI()
+
 app.add_middleware(
     CORSMiddleware,
+
     allow_origin_regex=r"https://.*\.vercel\.app",
-    
-    # allow_origins=[
-    #     "http://localhost:5173",
-    #     "https://study-forge-phi.vercel.app",
-    #     "https://study-forge-git-main-saxena03.vercel.app"
-    #     "https://study-forge-7zlze95o7-saxena03.vercel.app"
-    #     "https://studyforge-1r8l.onrender.com/api/auth/signup"
-    # ],
 
     allow_credentials=True,
 
