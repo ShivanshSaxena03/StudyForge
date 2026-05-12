@@ -16,6 +16,9 @@ app.add_middleware(
     allow_origins=[
         "http://localhost:5173",
         "https://study-forge-phi.vercel.app",
+        "https://study-forge-git-main-saxena03.vercel.app"
+        "https://study-forge-7zlze95o7-saxena03.vercel.app"
+        "https://studyforge-1r8l.onrender.com/api/auth/signup"
     ],
 
     allow_credentials=True,
