@@ -257,5 +257,3 @@ VITE_API_URL=
 # 👨‍💻 Author
 
 Shivansh Saxena
-
-Built with ❤️ using AI + Full Stack Development.
