@@ -33,13 +33,18 @@ class Book(Base):
     owner = relationship("User", back_populates="books")
     contents = relationship("Content", back_populates="book", cascade="all, delete-orphan")
     booklets = relationship("GeneratedBooklet", back_populates="book", cascade="all, delete-orphan")
+    generated_outputs = relationship(
+        "GeneratedOutput",
+        cascade="all, delete-orphan"
+    )
 
 
 class Content(Base):
     __tablename__ = "contents"
 
     id = Column(Integer, primary_key=True, index=True)
-    book_id = Column(Integer, ForeignKey("books.id"), nullable=False)
+    book_id = Column(Integer, ForeignKey("books.id", ondelete="CASCADE")
+, nullable=False)
     content_type = Column(String, nullable=False)  # pdf, docx, text, audio
     title = Column(String, nullable=False)
     file_path = Column(String)
@@ -55,7 +60,7 @@ class GeneratedBooklet(Base):
     __tablename__ = "generated_booklets"
 
     id = Column(Integer, primary_key=True, index=True)
-    book_id = Column(Integer, ForeignKey("books.id"), nullable=False)
+    book_id = Column(Integer,ForeignKey("books.id", ondelete="CASCADE") , nullable=False)
     title = Column(String, nullable=False)
     pdf_path = Column(String)
     generation_options = Column(JSON)
@@ -70,7 +75,7 @@ class GeneratedOutput(Base):
 
     book_id = Column(
         Integer,
-        ForeignKey("books.id"),
+        ForeignKey("books.id", ondelete="CASCADE"),
         nullable=False
     )
 
