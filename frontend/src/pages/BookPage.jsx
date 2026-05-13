@@ -760,79 +760,79 @@ export default function BookPage() {
         </main>
 
       </div>
-{history.length > 0 && (
+    {history.length > 0 && (
 
-  <div style={{ marginTop: 50 }}>
-
-    <div
-      style={{
-        fontFamily: 'Syne, sans-serif',
-        fontSize: 28,
-        fontWeight: 800,
-        marginBottom: 22,
-        color: '#1A1A2E',
-      }}
-    >
-      🕘 Previous Generations
-    </div>
-
-    <div
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        gap: 16,
-      }}
-    >
-
-      {history.map(item => (
+      <div style={{ marginTop: 50 }}>
 
         <div
-          key={item.id}
-          onClick={() =>
-            setGeneratedContent(item.output_data)
-          }
           style={{
-            background: 'white',
-            borderRadius: 18,
-            padding: 22,
-            border: '1px solid #E5E7EB',
-            cursor: 'pointer',
-            boxShadow: '0 4px 16px rgba(0,0,0,0.04)',
-            transition: '0.2s',
+            fontFamily: 'Syne, sans-serif',
+            fontSize: 28,
+            fontWeight: 800,
+            marginBottom: 22,
+            color: '#1A1A2E',
+          }}
+        >
+          🕘 Previous Generations
+        </div>
+
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            gap: 16,
           }}
         >
 
-          <div
-            style={{
-              fontWeight: 800,
-              fontSize: 18,
-              marginBottom: 8,
-              color: '#1A1A2E',
-            }}
-          >
-            {item.title}
-          </div>
+          {history.map(item => (
 
-          <div
-            style={{
-              fontSize: 13,
-              color: '#9CA3AF',
-            }}
-          >
-            {new Date(
-              item.created_at
-            ).toLocaleString()}
-          </div>
+            <div
+              key={item.id}
+              onClick={() =>
+                setGeneratedContent(item.output_data)
+              }
+              style={{
+                background: 'white',
+                borderRadius: 18,
+                padding: 22,
+                border: '1px solid #E5E7EB',
+                cursor: 'pointer',
+                boxShadow: '0 4px 16px rgba(0,0,0,0.04)',
+                transition: '0.2s',
+              }}
+            >
+
+              <div
+                style={{
+                  fontWeight: 800,
+                  fontSize: 18,
+                  marginBottom: 8,
+                  color: '#1A1A2E',
+                }}
+              >
+                {item.title}
+              </div>
+
+              <div
+                style={{
+                  fontSize: 13,
+                  color: '#9CA3AF',
+                }}
+              >
+                {new Date(
+                  item.created_at
+                ).toLocaleString()}
+              </div>
+
+            </div>
+
+          ))}
 
         </div>
 
-      ))}
+      </div>
 
-    </div>
-
-  </div>
-
-)}
+    )}
       {showText && (
 
         <div
