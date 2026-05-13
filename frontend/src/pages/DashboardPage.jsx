@@ -438,6 +438,108 @@ export default function DashboardPage() {
           ))}
 
         </div>
+          {showModal && (
+            <div style={s.overlay}>
+              <div style={s.modal}>
+
+                <h2 style={{
+                  marginBottom: 20,
+                  fontFamily: 'Syne, sans-serif'
+                }}>
+                  Create New Book
+                </h2>
+
+                <form onSubmit={handleCreate}>
+
+                  <div style={s.fieldGroup}>
+                    <label style={s.label}>Title</label>
+
+                    <input
+                      type="text"
+                      value={form.title}
+                      onChange={(e) =>
+                        setForm({
+                          ...form,
+                          title: e.target.value
+                        })
+                      }
+                      required
+                      style={{
+                        width: '100%',
+                        padding: 12,
+                        borderRadius: 10,
+                        border: '1px solid #D1D5DB'
+                      }}
+                    />
+                  </div>
+
+                  <div style={s.fieldGroup}>
+                    <label style={s.label}>Description</label>
+
+                    <textarea
+                      value={form.description}
+                      onChange={(e) =>
+                        setForm({
+                          ...form,
+                          description: e.target.value
+                        })
+                      }
+                      rows={4}
+                      style={{
+                        width: '100%',
+                        padding: 12,
+                        borderRadius: 10,
+                        border: '1px solid #D1D5DB'
+                      }}
+                    />
+                  </div>
+
+                  <div style={s.fieldGroup}>
+                    <label style={s.label}>Subject</label>
+
+                    <input
+                      type="text"
+                      value={form.subject}
+                      onChange={(e) =>
+                        setForm({
+                          ...form,
+                          subject: e.target.value
+                        })
+                      }
+                      style={{
+                        width: '100%',
+                        padding: 12,
+                        borderRadius: 10,
+                        border: '1px solid #D1D5DB'
+                      }}
+                    />
+                  </div>
+
+                  <div style={s.btnRow}>
+
+                    <button
+                      type="button"
+                      style={s.cancelBtn}
+                      onClick={() => setShowModal(false)}
+                    >
+                      Cancel
+                    </button>
+
+                    <button
+                      type="submit"
+                      style={s.submitBtn}
+                    >
+                      Create Book
+                    </button>
+
+                  </div>
+
+                </form>
+
+              </div>
+            </div>
+          )}
+          
 
       </main>
 
