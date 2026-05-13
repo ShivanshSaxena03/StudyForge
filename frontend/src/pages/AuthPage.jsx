@@ -151,10 +151,10 @@ export default function AuthPage({ mode }) {
           <span style={styles.heroAccent}>brilliant booklets.</span>
         </h1>
         <p style={styles.heroDesc}>
-          Upload PDFs, Word docs, voice notes, or paste text — and let AI transform them into structured study materials in seconds.
+          Upload PDFs, Word docs, or paste text — and let AI transform them into structured study materials in seconds.
         </p>
         <ul style={styles.featureList}>
-          {['Summaries & key concepts', 'Flowcharts & process diagrams', 'Comparison tables', 'Practice Q&A', 'Downloadable PDF booklets'].map(f => (
+          {['Summaries & key concepts', 'Flowcharts & process diagrams', 'Comparison tables', 'Practice Q&A'].map(f => (
             <li key={f} style={styles.featureItem}>
               <span style={styles.featureDot} /> {f}
             </li>
