@@ -64,8 +64,9 @@ def verify_password(
 def get_password_hash(password: str) -> str:
 
     if len(password.encode("utf-8")) > 72:
-        raise ValueError(
-            "Password too long. Maximum 72 bytes allowed."
+        raise HTTPException(
+            status_code=400,
+            detail="Password too long. Maximum 72 bytes allowed."
         )
 
     return pwd_context.hash(password)
